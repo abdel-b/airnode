@@ -2,7 +2,8 @@ import { encode } from '@api3/airnode-abi';
 import { cliPrint, getDeployedContract, readIntegrationInfo } from '../../src';
 
 const coinLabel = 'Ethereum';
-const coinId = coinLabel.toLowerCase();
+const coinId = 'ethusdt';
+// const coinId = coinLabel.toLowerCase();
 
 export const getEncodedParameters = () => {
   return encode([{ name: 'coinId', type: 'bytes32', value: coinId }]);
