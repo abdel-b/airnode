@@ -1,0 +1,184 @@
+{
+  "chains": [
+    {
+      "authorizers": [],
+      "contracts": {
+        "AirnodeRrp": "0x6e1a450A5f0e37091849bf6c7145e171F2F913C8"
+      },
+      "id": "3",
+      "providers": {
+        "exampleProvider": {
+          "url": "${PROVIDER_URL}"
+        }
+      },
+      "type": "evm"
+    }
+  ],
+  "nodeSettings": {
+    "cloudProvider": {
+      "type": "local"
+    },
+    "airnodeWalletMnemonic": "${AIRNODE_WALLET_MNEMONIC}",
+    "heartbeat": {
+      "enabled": false
+    },
+    "httpGateway": {
+      "enabled": false
+    },
+    "logFormat": "plain",
+    "logLevel": "INFO",
+    "nodeVersion": "0.3.0",
+    "stage": "dev"
+  },
+  "triggers": {
+    "rrp": [
+      {
+        "endpointId": "0x3f16794a8e95a950492abdfdaf721afe5fe635036e36266d5fe4bae30a723648",
+        "oisTitle": "Wazirx request",
+        "endpointName": "tokenMarketData"
+      }
+    ]
+  },
+  "ois": [
+    {
+      "oisFormat": "1.0.0",
+      "title": "Wazirx request",
+      "version": "1.0.0",
+      "apiSpecifications": {
+        "servers": [
+          {
+            "url": "https://api.wazirx.com/api/v2"
+          }
+        ],
+        "paths": {
+          "/tickers/{id}": {
+            "get": {
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "id"
+                },
+                {
+                  "in": "query",
+                  "name": "localization"
+                },
+                {
+                  "in": "query",
+                  "name": "tickers"
+                },
+                {
+                  "in": "query",
+                  "name": "market_data"
+                },
+                {
+                  "in": "query",
+                  "name": "community_data"
+                },
+                {
+                  "in": "query",
+                  "name": "developer_data"
+                },
+                {
+                  "in": "query",
+                  "name": "sparkline"
+                },
+                {
+                  "in": "query",
+                  "name": "ticker"
+                }
+              ]
+            }
+          }
+        },
+        "components": {
+          "securitySchemes": {}
+        },
+        "security": {}
+      },
+      "endpoints": [
+        {
+          "name": "tokenMarketData",
+          "operation": {
+            "method": "get",
+            "path": "/tickers/{id}"
+          },
+          "fixedOperationParameters": [
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "localization"
+              },
+              "value": "false"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "tickers"
+              },
+              "value": "false"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "market_data"
+              },
+              "value": "true"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "community_data"
+              },
+              "value": "false"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "developer_data"
+              },
+              "value": "false"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "sparkline"
+              },
+              "value": "false"
+            },
+            {
+              "operationParameter": {
+                "in": "query",
+                "name": "ticker"
+              },
+              "value": "true"
+            }
+          ],
+          "reservedParameters": [
+            {
+              "name": "_type",
+              "fixed": "int256"
+            },
+            {
+              "name": "_path",
+              "fixed": "ticker.last"
+            },
+            {
+              "name": "_times",
+              "fixed": "1000000"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "coinId",
+              "operationParameter": {
+                "in": "path",
+                "name": "id"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "apiCredentials": []
+}
